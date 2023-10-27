@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public class MockProductRepository {
-    private final List<Product> productDB = new ArrayList<Product>();
+    private final List<Product> productDB = new ArrayList<>();
 
     @PostConstruct
     private void initDB() {
