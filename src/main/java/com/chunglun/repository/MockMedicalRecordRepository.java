@@ -1,6 +1,7 @@
 package com.chunglun.repository;
 
 import com.chunglun.entity.MedicalRecord;
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -11,6 +12,12 @@ import java.util.stream.Collectors;
 @Repository
 public class MockMedicalRecordRepository {
     private final List<MedicalRecord> medicalRecordDB = new ArrayList<>();
+
+    @PostConstruct
+    private void initDB() {
+        medicalRecordDB.add(new MedicalRecord("000138000465688", "20230710", 83, 15, 0.9, 26));
+        medicalRecordDB.add(new MedicalRecord("000138000465688", "20221225", 90, 15, 0.9, 24));
+    }
 
     public MedicalRecord insert(MedicalRecord medicalRecord) {
         medicalRecordDB.add(medicalRecord);

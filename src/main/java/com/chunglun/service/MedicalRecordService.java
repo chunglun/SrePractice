@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static java.lang.StringTemplate.STR;
+//import static java.lang.StringTemplate.STR;
 
 @Service
 public class MedicalRecordService {
@@ -27,13 +27,16 @@ public class MedicalRecordService {
 
     public MedicalRecord getMedicalRecordByRecordId(String recordId) {
         return medicalRecordRepository.findByRecordId(recordId)
-                .orElseThrow(() -> new NotFoundException(STR."Can't find medical record with record id \{ recordId }."));
+                .orElseThrow(() -> new NotFoundException("Can't find medical record with record id " + recordId + "."));
+        /*return medicalRecordRepository.findByRecordId(recordId)
+                .orElseThrow(() -> new NotFoundException(STR."Can't find medical record with record id \{ recordId }."));*/
     }
 
     public List<MedicalRecord> getMedicalRecordByUserId(String userId) {
         List<MedicalRecord> medicalRecords = medicalRecordRepository.findByUserId(userId);
         if ((medicalRecords == null) || (medicalRecords.size() == 0)) {
-            throw new NotFoundException(STR."Can't find medical record with user id \{ userId }.");
+            throw new NotFoundException("Can't find medical record with user id " + userId + ".");
+            //throw new NotFoundException(STR."Can't find medical record with user id \{ userId }.");
         }
         return medicalRecords;
     }
